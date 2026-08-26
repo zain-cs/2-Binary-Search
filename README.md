@@ -1,129 +1,130 @@
-# 🔍 Binary Search Algorithm
+# 🔎 Binary Search
 
-[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-zain--cs-181717?logo=github)](https://github.com/zain-cs)
+> An implementation of the **Binary Search** algorithm in Python, including function-based and object-oriented approaches.
 
-A comprehensive implementation of the **Binary Search Algorithm** in Python, complete with detailed documentation and a PDF lecture explaining the concept from basics to advanced use cases.
-
-## 📚 About
-
-This repository contains a clean, well-documented implementation of the Binary Search algorithm — one of the most fundamental searching algorithms in computer science. Binary Search is an efficient algorithm for finding an item from a sorted list of items by repeatedly dividing the search interval in half.
-
-### Key Features
-
-- ✅ **Complete Python Implementation** - Production-ready code with proper error handling
-- 📖 **Comprehensive PDF Lecture** - Step-by-step explanation of the algorithm
-- 🎯 **Time Complexity: O(log n)** - Significantly faster than linear search
-- 💡 **Real-world Use Cases** - Practical applications and examples
-- 🧪 **Easy to Understand** - Perfect for beginners and interview preparation
-
-## 📂 Repository Structure
-
-```
-2-Binary-Search/
-├── Binary Search.py              # Python implementation of the algorithm
-├── Binary Search - Lecture.pdf   # Detailed lecture and concept breakdown
-└── README.md                     # This file
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.x installed on your system
-- Basic understanding of arrays/lists and sorting
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/zain-cs/2-Binary-Search.git
-cd 2-Binary-Search
-```
-
-2. Run the Python script:
-```bash
-python "Binary Search.py"
-```
-
-## 💻 How Binary Search Works
-
-Binary Search works by:
-
-1. **Starting with a sorted array** - The array must be sorted for binary search to work
-2. **Finding the middle element** - Compare the target value with the middle element
-3. **Eliminating half the array** - Based on comparison, eliminate either the left or right half
-4. **Repeating the process** - Continue until the element is found or the array is exhausted
-
-### Algorithm Complexity
-
-| Case | Time Complexity | Space Complexity |
-|------|----------------|------------------|
-| Best Case | O(1) | O(1) |
-| Average Case | O(log n) | O(1) |
-| Worst Case | O(log n) | O(1) |
-
-## 📖 Learning Resources
-
-This repository includes:
-
-- **`Binary Search.py`** - A clean Python implementation with:
-  - Detailed comments explaining each step
-  - Example usage and test cases
-  - Error handling and edge cases
-  
-- **`Binary Search - Lecture.pdf`** - A comprehensive guide covering:
-  - Algorithm fundamentals and intuition
-  - Step-by-step visual walkthrough
-  - Code breakdown and analysis
-  - Common interview questions
-  - Real-world applications
-
-## 🎯 Use Cases
-
-Binary Search is widely used in:
-
-- **Database Systems** - Searching in sorted indices
-- **Libraries** - Finding books in catalogues
-- **Dictionary Operations** - Word lookups
-- **Game Development** - Searching in sorted leaderboards
-- **Operating Systems** - Memory management and file systems
-- **Network Routing** - IP address lookup tables
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to improve the code or documentation:
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👤 Author
-
-**Zain**
-- GitHub: [@zain-cs](https://github.com/zain-cs)
-
-## ⭐ Show Your Support
-
-If you found this repository helpful, please consider giving it a star! ⭐
-
-## 📧 Contact
-
-Feel free to reach out if you have any questions or suggestions!
+<p align="center">
+  <img src="binary_search_demo.gif" alt="Binary Search Visualization" width="700"/>
+</p>
 
 ---
 
-<div align="center">
+## 📌 Overview
 
-**Happy Coding! 💻**
+Binary Search efficiently searches a **sorted** collection by repeatedly dividing the search space in half.
 
-Made with ❤️ by [zain-cs](https://github.com/zain-cs)
+This implementation includes:
 
-</div>
+* Function-based Binary Search
+* Object-oriented `BinarySearch` class
+* Step-by-step search tracing
+* Dynamic insertion through `add()`
+
+---
+
+## ⚙️ Example
+
+Given:
+
+```text
+Array:  [5, 12, 19, 23, 28, 33, 42, 56, 67, 72, 88]
+Target: 42
+```
+
+The algorithm narrows the search space:
+
+```text
+Step 1 → mid = 5  → 33 < 42 → search right
+Step 2 → mid = 8  → 67 > 42 → search left
+Step 3 → mid = 6  → 42 = 42 → found
+```
+
+Output:
+
+```text
+Target 42 found at index 6
+```
+
+---
+
+## 🐍 Implementation
+
+```python
+def binary_search(arr, target):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+```
+
+The repository also contains an OOP implementation with:
+
+```text
+BinarySearch
+├── search()
+├── add()
+└── __str__()
+```
+
+---
+
+## ⏱️ Complexity
+
+| Operation      |   Complexity |
+| -------------- | -----------: |
+| Best Search    |       `O(1)` |
+| Average Search |   `O(log n)` |
+| Worst Search   |   `O(log n)` |
+| Search Space   |       `O(1)` |
+| `add()`        | `O(n log n)` |
+
+> Binary Search requires the data to be sorted.
+
+---
+
+## 📂 Repository
+
+```text
+2-Binary-Search/
+├── Binary Search.py
+├── Binary Search - Lecture.pdf
+├── binary_search_demo.gif
+├── README.md
+└── LICENSE
+```
+
+📄 **Detailed explanation:**
+See [`Binary Search - Lecture.pdf`](./Binary%20Search%20-%20Lecture.pdf)
+
+---
+
+## 🗺️ DSA Learning Series
+
+This is the **second algorithm** in my DSA learning series.
+
+**Previous:** [1-Linear-Search](https://github.com/zain-cs/1-Linear-Search)
+
+---
+
+## 🚀 Learning Progress
+
+This repository was originally created while I was learning the fundamentals of DSA. I later revisited it to improve the implementation, documentation, and visualization as my programming and software engineering skills developed.
+
+---
+
+## 👨‍💻 Author
+
+**Muhammad Zain-ul-Abidin**
+
+BS Computer Science Student · University of Agriculture, Faisalabad
+
+[GitHub](https://github.com/zain-cs) · [LinkedIn](https://www.linkedin.com/in/muhammad-zain-cs/)
