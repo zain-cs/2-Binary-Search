@@ -1,130 +1,114 @@
-# 🔎 Binary Search
-
-> An implementation of the **Binary Search** algorithm in Python, including function-based and object-oriented approaches.
+<h1 align="center">🎯 Binary Search</h1>
 
 <p align="center">
-  <img src="binary_search_demo.gif" alt="Binary Search Visualization" width="700"/>
+  <i>An animated, beginner-friendly walkthrough of the Binary Search algorithm with two Python implementations.</i>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Algorithm-Searching-4472C4?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Difficulty-Beginner-3fb950?style=for-the-badge"/>
 </p>
 
 ---
 
-## 📌 Overview
+## 📽️ Visual Walkthrough
 
-Binary Search efficiently searches a **sorted** collection by repeatedly dividing the search space in half.
+Binary Search checks the **middle element** of the current range and eliminates the half that can't contain the target — shrinking the search space until it finds a match.
 
-This implementation includes:
+<p align="center">
+  <img src="binary_search_demo.gif" alt="Binary Search animated walkthrough" width="680"/>
+</p>
 
-* Function-based Binary Search
-* Object-oriented `BinarySearch` class
-* Step-by-step search tracing
-* Dynamic insertion through `add()`
+> 🔵 Blue = active search window · 🟡 Amber = `mid` being checked · ⚫ Dim = eliminated · 🟢 Green = found
 
 ---
 
-## ⚙️ Example
+## ⚙️ How It Works
 
-Given:
+1. Set `low = 0` and `high = length - 1`.
+2. While `low <= high`: check `mid = (low + high) // 2`.
+3. Match → return `mid`. Too small → `low = mid + 1`. Too big → `high = mid - 1`.
+4. Window closes with no match → return `-1`.
 
-```text
-Array:  [5, 12, 19, 23, 28, 33, 42, 56, 67, 72, 88]
-Target: 42
-```
+> ⚠️ Requires **sorted** data — it won't work correctly otherwise.
 
-The algorithm narrows the search space:
+---
 
-```text
-Step 1 → mid = 5  → 33 < 42 → search right
-Step 2 → mid = 8  → 67 > 42 → search left
-Step 3 → mid = 6  → 42 = 42 → found
-```
+## ⏱️ Complexity
 
-Output:
+| Case | Time | Space |
+|---|---|---|
+| Best | `O(1)` | `O(1)` |
+| Average / Worst | `O(log n)` | `O(1)` |
 
-```text
-Target 42 found at index 6
-```
+A 1M-element array takes at most ~20 comparisons — versus up to 1,000,000 for Linear Search.
 
 ---
 
 ## 🐍 Implementation
 
+**Function-based:**
 ```python
 def binary_search(arr, target):
-    low = 0
-    high = len(arr) - 1
-
+    low, high = 0, len(arr) - 1
     while low <= high:
         mid = (low + high) // 2
-
         if arr[mid] == target:
             return mid
         elif arr[mid] < target:
             low = mid + 1
         else:
             high = mid - 1
-
     return -1
+
+arr = [5, 12, 19, 23, 28, 33, 42, 56, 67, 72, 88]
+binary_search(arr, 42)
 ```
 
-The repository also contains an OOP implementation with:
+**Object-oriented** (with sorted insert via `add()`):
+```python
+class BinarySearch:
+    def __init__(self, data=None):
+        self.data = data if data is not None else []
 
-```text
-BinarySearch
-├── search()
-├── add()
-└── __str__()
+    def search(self, target):
+        low, high = 0, len(self.data) - 1
+        while low <= high:
+            mid = (low + high) // 2
+            if self.data[mid] == target:
+                return mid
+            elif self.data[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return -1
+
+    def add(self, item):
+        self.data.append(item)
+        self.data.sort()
+```
+
+> 💡 Full commented version with step-by-step print statements: [`binary_search.py`](./binary_search.py)
+
+---
+
+## ▶️ Run It
+
+```bash
+git clone https://github.com/zain-cs/2-Binary-Search.git
+cd 2-Binary-Search
+python binary_search.py
 ```
 
 ---
 
-## ⏱️ Complexity
+## 🗺️ Part of a DSA Series
 
-| Operation      |   Complexity |
-| -------------- | -----------: |
-| Best Search    |       `O(1)` |
-| Average Search |   `O(log n)` |
-| Worst Search   |   `O(log n)` |
-| Search Space   |       `O(1)` |
-| `add()`        | `O(n log n)` |
-
-> Binary Search requires the data to be sorted.
+📌 [Linear Search](https://github.com/zain-cs/1-Linear-Search) → **Binary Search** → more to come as I work through DSA.
 
 ---
 
-## 📂 Repository
-
-```text
-2-Binary-Search/
-├── Binary Search.py
-├── Binary Search - Lecture.pdf
-├── binary_search_demo.gif
-├── README.md
-└── LICENSE
-```
-
-📄 **Detailed explanation:**
-See [`Binary Search - Lecture.pdf`](./Binary%20Search%20-%20Lecture.pdf)
-
----
-
-## 🗺️ DSA Learning Series
-
-This is the **second algorithm** in my DSA learning series.
-
-**Previous:** [1-Linear-Search](https://github.com/zain-cs/1-Linear-Search)
-
----
-
-## 🚀 Learning Progress
-
-This repository was originally created while I was learning the fundamentals of DSA. I later revisited it to improve the implementation, documentation, and visualization as my programming and software engineering skills developed.
-
----
-
-## 👨‍💻 Author
-
-**Muhammad Zain-ul-Abidin**
-
-BS Computer Science Student · University of Agriculture, Faisalabad
-
-[GitHub](https://github.com/zain-cs) · [LinkedIn](https://www.linkedin.com/in/muhammad-zain-cs/)
+<p align="center">
+  Made with 🐍 by <a href="https://github.com/zain-cs">Muhammad Zain Ul Abidin</a>
+</p>
